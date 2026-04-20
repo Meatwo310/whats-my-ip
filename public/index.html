@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What's My IP?</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+      }
+
+      button {
+        padding: 0.6em 1.4em;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      #result {
+        margin-top: 1em;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn">Show my public IP</button>
+    <p id="result"></p>
+    <script>
+      document.getElementById('btn').addEventListener('click', async () => {
+        const result = document.getElementById('result');
+        try {
+          const res = await fetch('/api/ip');
+          const data = await res.json();
+          result.textContent = data.ip;
+        } catch {
+          result.textContent = 'failed';
+        }
+      });
+    </script>
+  </body>
+</html>

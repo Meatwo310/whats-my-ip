@@ -36,6 +36,11 @@
         font-size: 1.1rem;
       }
 
+      td:last-child {
+        word-break: break-all;
+        max-width: min(60vw, 20em);
+      }
+
       td:first-child {
         font-weight: bold;
         text-align: right;
@@ -44,8 +49,8 @@
 
       #github-link {
         position: fixed;
-        bottom: 1.2em;
-        left: 1.2em;
+        bottom: 0.8em;
+        left: 0.8em;
         display: flex;
         align-items: center;
         gap: 0.4em;

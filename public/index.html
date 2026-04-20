@@ -41,6 +41,20 @@
         text-align: right;
         color: #555;
       }
+
+      #github-link {
+        position: fixed;
+        bottom: 1em;
+        left: 1em;
+        font-size: 0.85rem;
+        color: #555;
+        text-decoration: none;
+      }
+
+      #github-link:hover {
+        color: #000;
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -51,6 +65,7 @@
       <tr><td>Country:</td><td id="country"></td></tr>
     </table>
     <p id="error"></p>
+    <a id="github-link" href="https://github.com/Meatwo310/whats-my-ip" target="_blank" rel="noopener noreferrer">github.com/Meatwo310/whats-my-ip</a>
     <script>
       document.getElementById('btn').addEventListener('click', async () => {
         const table = document.getElementById('result');

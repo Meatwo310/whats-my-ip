@@ -14,8 +14,10 @@ document.getElementById('btn').addEventListener('click', async () => {
     } else {
       ipv6Row.hidden = true;
     }
+    const specialCountryCodes = { XX: 'Unknown', T1: 'Tor Network' };
     const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
-    document.getElementById('country').textContent = regionNames.of(data.country) ?? data.country;
+    document.getElementById('country').textContent =
+      specialCountryCodes[data.country] ?? regionNames.of(data.country) ?? data.country;
     error.textContent = '';
   } catch {
     table.hidden = true;

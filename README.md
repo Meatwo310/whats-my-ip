@@ -16,7 +16,17 @@ GET /api/ip
 
 ## Deploy
 
+**Cloudflare Pages dashboard** (Git integration):
+
+| Setting | Value |
+|---|---|
+| Build command | *(empty)* |
+| Deploy command | `npm run deploy` |
+| Build output directory | `public` |
+
+**CLI**:
+
 ```bash
 npm install
-npx wrangler pages deploy
+npm run deploy
 ```

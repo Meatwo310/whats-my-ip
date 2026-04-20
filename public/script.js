@@ -1,6 +1,8 @@
 document.getElementById('btn').addEventListener('click', async () => {
+  const btn = document.getElementById('btn');
   const table = document.getElementById('result');
   const error = document.getElementById('error');
+  btn.disabled = true;
   try {
     const res = await fetch('/api/ip');
     const data = await res.json();
@@ -17,5 +19,7 @@ document.getElementById('btn').addEventListener('click', async () => {
   } catch {
     table.hidden = true;
     error.textContent = 'failed';
+  } finally {
+    btn.disabled = false;
   }
 });

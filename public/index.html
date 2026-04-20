@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,18 +28,17 @@
     </style>
   </head>
   <body>
-    <button id="btn">IPアドレスを表示</button>
+    <button id="btn">Show my public IP</button>
     <p id="result"></p>
     <script>
       document.getElementById('btn').addEventListener('click', async () => {
         const result = document.getElementById('result');
-        result.textContent = '取得中...';
         try {
           const res = await fetch('/api/ip');
           const data = await res.json();
           result.textContent = data.ip;
         } catch {
-          result.textContent = '取得に失敗しました';
+          result.textContent = 'failed';
         }
       });
     </script>

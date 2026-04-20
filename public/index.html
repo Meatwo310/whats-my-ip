@@ -25,20 +25,47 @@
         margin-top: 1em;
         font-size: 1.2rem;
       }
+
+      table {
+        margin-top: 1em;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 0.3em 0.8em;
+        font-size: 1.1rem;
+      }
+
+      td:first-child {
+        font-weight: bold;
+        text-align: right;
+        color: #555;
+      }
     </style>
   </head>
   <body>
     <button id="btn">Show my public IP</button>
-    <p id="result"></p>
+    <table id="result" hidden>
+      <tr><td>IPv4:</td><td id="ip"></td></tr>
+      <tr><td>IPv6:</td><td id="ipv6"></td></tr>
+      <tr><td>Country:</td><td id="country"></td></tr>
+    </table>
+    <p id="error"></p>
     <script>
       document.getElementById('btn').addEventListener('click', async () => {
-        const result = document.getElementById('result');
+        const table = document.getElementById('result');
+        const error = document.getElementById('error');
         try {
           const res = await fetch('/api/ip');
           const data = await res.json();
-          result.textContent = data.ip;
+          document.getElementById('ip').textContent = data.ip;
+          document.getElementById('ipv6').textContent = data.ipv6;
+          document.getElementById('country').textContent = data.country;
+          table.hidden = false;
+          error.textContent = '';
         } catch {
-          result.textContent = 'failed';
+          table.hidden = true;
+          error.textContent = 'failed';
         }
       });
     </script>

@@ -14,7 +14,8 @@ document.getElementById('btn').addEventListener('click', async () => {
     } else {
       ipv6Row.hidden = true;
     }
-    document.getElementById('country').textContent = data.country;
+    const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+    document.getElementById('country').textContent = regionNames.of(data.country) ?? data.country;
     error.textContent = '';
   } catch {
     table.hidden = true;

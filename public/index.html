@@ -78,8 +78,8 @@
   <body>
     <button id="btn">Show my public IP</button>
     <table id="result" hidden>
-      <tr><td>IPv4:</td><td id="ip"></td></tr>
-      <tr><td>IPv6:</td><td id="ipv6"></td></tr>
+      <tr><td>IP:</td><td id="ip"></td></tr>
+      <tr id="ipv6-row" hidden><td>CF-Connecting-IPv6:</td><td id="ipv6"></td></tr>
       <tr><td>Country:</td><td id="country"></td></tr>
     </table>
     <p id="error"></p>
@@ -95,7 +95,13 @@
           const res = await fetch('/api/ip');
           const data = await res.json();
           document.getElementById('ip').textContent = data.ip;
-          document.getElementById('ipv6').textContent = data.ipv6;
+          const ipv6Row = document.getElementById('ipv6-row');
+          if (data.ipv6) {
+            document.getElementById('ipv6').textContent = data.ipv6;
+            ipv6Row.hidden = false;
+          } else {
+            ipv6Row.hidden = true;
+          }
           document.getElementById('country').textContent = data.country;
           table.hidden = false;
           error.textContent = '';
